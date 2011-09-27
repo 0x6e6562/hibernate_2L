@@ -67,9 +67,17 @@ public class CachingTest {
   public void collectionsShouldBeCached() {
     Session session = sessionFactory.openSession();
 
-    int repetitions = 2;
+    // Although this is supposed to be a functional test and hence would fail for 1 repetition,
+    // interestingly enough, on my machine, the caching seems to kick in at about 2350000-2400000 repetitions,
+    // as the stats printed to the console seem to level off at a certain value. This value appears to be
+    // non-deterministic, but is in a certain range on a particular machine.
+
+    int repetitions = 2500000;
     for(int i = 0; i < repetitions; i++) {
       listAllOwners(session);
+      if (i % 25000 == 0) {
+        System.err.println(sessionFactory.getStatistics().getQueryExecutionCount());
+      }
     }
 
     session.close();
