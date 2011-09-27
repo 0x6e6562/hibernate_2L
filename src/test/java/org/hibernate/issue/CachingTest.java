@@ -80,6 +80,6 @@ public class CachingTest {
 
   @SuppressWarnings("unchecked")
   private List<Owner> listAllOwners(Session session) {
-    return session.createQuery("select o from Owner o").list();
+    return session.createQuery("select o from Owner o").setCacheable(true).list();
   }
 }
