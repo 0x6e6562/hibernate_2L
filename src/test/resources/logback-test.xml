@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %level %logger{0}:%line - %msg%n</Pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.hibernate" level="WARN" />
+  <logger name="net.sf.ehcache" level="ERROR" />
+
+  <logger name="org.hibernate.event.def.AbstractFlushingEventListener" level="OFF" />
+  <logger name="org.hibernate.util.JDBCExceptionReporter" level="OFF" />
+
+  <root level="debug">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>
